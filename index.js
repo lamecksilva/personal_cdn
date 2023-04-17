@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
+
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 var ip = require('ip');
+const morgan = require('morgan');
 
 const ipAddress = ip.address();
+
+app.use(
+	morgan(':method :url :status :res[content-length] - :response-time ms')
+);
 
 app.use(express.static(path.join(__dirname, 'public'))); //  "public" off of current is root
 app.use(express.static('public'));
